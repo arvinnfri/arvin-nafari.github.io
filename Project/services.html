@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>خدمات - شرکت شما</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .services-page {
+      padding: 80px 0;
+    }
+    
+    .services-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 50px;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 20px;
+    }
+    
+    .tab-btn {
+      padding: 12px 25px;
+      border: none;
+      background: #f8f9fa;
+      color: var(--secondary-color);
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--gradient-primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .service-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+    
+    .service-image {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--box-shadow-hover);
+    }
+    
+    .service-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: var(--transition-slow);
+    }
+    
+    .service-image:hover img {
+      transform: scale(1.05);
+    }
+    
+    .service-info h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: var(--secondary-color);
+    }
+    
+    .service-features {
+      list-style: none;
+      margin: 25px 0;
+    }
+    
+    .service-features li {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .service-features i {
+      color: var(--success-color);
+      margin-left: 10px;
+      font-size: 18px;
+    }
+    
+    .pricing-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .pricing-card {
+      background: white;
+      border-radius: 15px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: var(--box-shadow-card);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .pricing-card.popular {
+      transform: scale(1.05);
+      border: 2px solid var(--primary-color);
+      z-index: 2;
+    }
+    
+    .pricing-card.popular::before {
+      content: 'پیشنهاد ویژه';
+      position: absolute;
+      top: 15px;
+      left: -25px;
+      background: var(--gradient-primary);
+      color: white;
+      padding: 5px 30px;
+      font-size: 14px;
+      font-weight: 600;
+      transform: rotate(-45deg);
+    }
+    
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--box-shadow-hover);
+    }
+    
+    .pricing-card.popular:hover {
+      transform: scale(1.05) translateY(-10px);
+    }
+    
+    .price-header {
+      margin-bottom: 25px;
+    }
+    
+    .price-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--secondary-color);
+      margin-bottom: 10px;
+    }
+    
+    .price-amount {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin-bottom: 5px;
+    }
+    
+    .price-period {
+      color: var(--gray-color);
+      font-size: 0.9rem;
+    }
+    
+    .price-features {
+      list-style: none;
+      margin: 25px 0;
+    }
+    
+    .price-features li {
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .price-features li:last-child {
+      border-bottom: none;
+    }
+    
+    .work-process {
+      padding: 80px 0;
+    }
+    
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .process-step {
+      text-align: center;
+      padding: 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: var(--box-shadow-card);
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .process-step:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--box-shadow-hover);
+    }
+    
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 auto 20px;
+    }
+    
+    .process-step h3 {
+      margin-bottom: 15px;
+      color: var(--secondary-color);
+    }
+    
+    .faq-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    }
+    
+    .faq-container {
+      max-width: 800px;
+      margin: 50px auto 0;
+    }
+    
+    .faq-item {
+      background: white;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: var(--box-shadow-card);
+      overflow: hidden;
+    }
+    
+    .faq-question {
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: var(--secondary-color);
+    }
+    
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      padding: 0 20px 20px;
+    }
+    
+    .faq-question i {
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+    
+    @media (max-width: 992px) {
+      .service-detail {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .pricing-card.popular {
+        transform: scale(1);
+        margin: 20px 0;
+      }
+      
+      .pricing-card.popular:hover {
+        transform: translateY(-10px);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .services-tabs {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .tab-btn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-content">
+        <div class="contact-info">
+          <span><i class="fas fa-phone"></i> ۰۲۱-۱۲۳۴۵۶۷</span>
+          <span><i class="fas fa-envelope"></i> info@yourmail.com</span>
+          <span><i class="fas fa-map-marker-alt"></i> تهران، خیابان فناوری</span>
+        </div>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-telegram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <header class="main-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="logo">
+          <img src="assets/logo.png" alt="لوگو شما">
+        </a>
+        
+        <ul class="nav-menu">
+          <li><a href="index.html">خانه</a></li>
+          <li><a href="about.html">درباره ما</a></li>
+          <li><a href="services.html" class="active">خدمات</a></li>
+          <li><a href="projects.html">پروژه‌ها</a></li>
+          <li><a href="team.html">تیم ما</a></li>
+          <li><a href="blog.html">وبلاگ</a></li>
+          <li><a href="contact.html">تماس با ما</a></li>
+        </ul>
+
+        <div class="auth-buttons">
+          <a href="login.html" class="btn btn-outline">ورود</a>
+          <a href="register.html" class="btn btn-primary">ثبت نام</a>
+        </div>
+
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <h1 data-aos="fade-up">خدمات تخصصی ما</h1>
+        <p data-aos="fade-up" data-aos-delay="200">راهکارهای جامع برای نیازهای متنوع کسب‌وکار شما</p>
+      </div>
+    </div>
+  </section>
+  <section class="services-page">
+    <div class="container">
+      <div class="services-tabs" data-aos="fade-up">
+        <button class="tab-btn active" data-tab="development">توسعه نرم‌افزار</button>
+        <button class="tab-btn" data-tab="mobile">موبایل</button>
+        <button class="tab-btn" data-tab="web">طراحی وب</button>
+        <button class="tab-btn" data-tab="cloud">راهکارهای ابری</button>
+        <button class="tab-btn" data-tab="ai">هوش مصنوعی</button>
+        <button class="tab-btn" data-tab="consulting">مشاوره</button>
+      </div>
+      <div class="tab-content active" id="development" data-aos="fade-up">
+        <div class="service-detail">
+          <div class="service-image">
+            <img src="assets/services/service-dev.webp" alt="توسعه نرم‌افزار">
+          </div>
+          <div class="service-info">
+            <h2>توسعه نرم‌افزار سفارشی</h2>
+            <p>شرکت شما با تیم متخصص خود، آماده طراحی و توسعه نرم‌افزارهای سفارشی متناسب با نیازهای خاص کسب‌وکار شماست. ما با استفاده از آخرین تکنولوژی‌ها و متدولوژی‌های توسعه نرم‌افزار، راهکارهایی کارآمد و مقیاس‌پذیر ارائه می‌دهیم.</p>
+            <ul class="service-features">
+              <li><i class="fas fa-check-circle"></i> توسعه نرم‌افزارهای تحت ویندوز و وب</li>
+              <li><i class="fas fa-check-circle"></i> طراحی معماری نرم‌افزار</li>
+              <li><i class="fas fa-check-circle"></i> پیاده‌سازی با زبان‌های مدرن</li>
+              <li><i class="fas fa-check-circle"></i> تست و تضمین کیفیت</li>
+              <li><i class="fas fa-check-circle"></i> پشتیبانی و نگهداری</li>
+              <li><i class="fas fa-check-circle"></i> توسعه بر اساس چابک (Agile)</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary">درخواست مشاوره</a>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="mobile" data-aos="fade-up">
+        <div class="service-detail">
+          <div class="service-image">
+            <img src="assets/services/service-mobile.webp" alt="توسعه اپلیکیشن موبایل">
+          </div>
+          <div class="service-info">
+            <h2>توسعه اپلیکیشن موبایل</h2>
+            <p>با گسترش استفاده از موبایل، حضور در این پلتفرم برای هر کسب‌وکاری ضروری است. ما اپلیکیشن‌های موبایل با کیفیت بالا و کاربرپسند برای پلتفرم‌های iOS و Android توسعه می‌دهیم.</p>
+            <ul class="service-features">
+              <li><i class="fas fa-check-circle"></i> توسعه اپلیکیشن‌های Native و Hybrid</li>
+              <li><i class="fas fa-check-circle"></i> طراحی UI/UX اختصاصی</li>
+              <li><i class="fas fa-check-circle"></i> یکپارچه‌سازی با سرویس‌ها</li>
+              <li><i class="fas fa-check-circle"></i> انتشار در استورها (App Store, Google Play)</li>
+              <li><i class="fas fa-check-circle"></i> بهینه‌سازی عملکرد و مصرف باتری</li>
+              <li><i class="fas fa-check-circle"></i> پشتیبانی و بروزرسانی مستمر</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary">درخواست مشاوره</a>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="web" data-aos="fade-up">
+        <div class="service-detail">
+          <div class="service-image">
+            <img src="assets/services/service-web.webp" alt="طراحی وبسایت">
+          </div>
+          <div class="service-info">
+            <h2>طراحی و توسعه وبسایت</h2>
+            <p>وبسایت شما ویترین کسب‌وکار شما در دنیای دیجیتال است. ما وبسایت‌های جذاب، ریسپانسیو و بهینه‌شده برای موتورهای جستجو طراحی می‌کنیم که تجربه کاربری بی‌نظیری ارائه می‌دهند.</p>
+            <ul class="service-features">
+              <li><i class="fas fa-check-circle"></i> طراحی ریسپانسیو و سازگار با تمام دستگاه‌ها</li>
+              <li><i class="fas fa-check-circle"></i> بهینه‌سازی برای موتورهای جستجو (SEO)</li>
+              <li><i class="fas fa-check-circle"></i> طراحی UI/UX مدرن و کاربرپسند</li>
+              <li><i class="fas fa-check-circle"></i> توسعه با تکنولوژی‌های روز (React, Vue, Angular)</li>
+              <li><i class="fas fa-check-circle"></i> سیستم مدیریت محتوا (CMS) اختصاصی</li>
+              <li><i class="fas fa-check-circle"></i> امنیت بالا و محافظت در برابر حملات</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary">درخواست مشاوره</a>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="cloud" data-aos="fade-up">
+        <div class="service-detail">
+          <div class="service-image">
+            <img src="assets/services/service-cloud.webp" alt="راهکارهای ابری">
+          </div>
+          <div class="service-info">
+            <h2>راهکارهای ابری و زیرساخت</h2>
+            <p>با استفاده از راهکارهای ابری، کسب‌وکار شما می‌تواند به انعطاف‌پذیری، مقیاس‌پذیری و امنیت بالایی دست یابد. ما خدمات جامع ابری را ارائه می‌دهیم.</p>
+            <ul class="service-features">
+              <li><i class="fas fa-check-circle"></i> مشاوره و مهاجرت به فضای ابری</li>
+              <li><i class="fas fa-check-circle"></i> راه‌اندازی زیرساخت ابری (Cloud Infrastructure)</li>
+              <li><i class="fas fa-check-circle"></i> پیکربندی و مدیریت سرورهای ابری</li>
+              <li><i class="fas fa-check-circle"></i> راهکارهای ذخیره‌سازی ابری</li>
+              <li><i class="fas fa-check-circle"></i> پشتیبان‌گیری و بازیابی ابری</li>
+              <li><i class="fas fa-check-circle"></i> نظارت و بهینه‌سازی هزینه‌های ابری</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary">درخواست مشاوره</a>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="ai" data-aos="fade-up">
+        <div class="service-detail">
+          <div class="service-image">
+            <img src="assets/services/service-ai.webp" alt="هوش مصنوعی">
+          </div>
+          <div class="service-info">
+            <h2>هوش مصنوعی و یادگیری ماشین</h2>
+            <p>از قدرت هوش مصنوعی برای تحول کسب‌وکار خود استفاده کنید. ما راهکارهای مبتنی بر AI و ML را برای خودکارسازی فرآیندها و استخراج insights ارزشمند ارائه می‌دهیم.</p>
+            <ul class="service-features">
+              <li><i class="fas fa-check-circle"></i> توسعه مدل‌های پیش‌بینی و تحلیلی</li>
+              <li><i class="fas fa-check-circle"></i> پردازش زبان طبیعی (NLP)</li>
+              <li><i class="fas fa-check-circle"></i> بینایی کامپیوتر و پردازش تصویر</li>
+              <li><i class="fas fa-check-circle"></i> چت‌بات‌های هوشمند</li>
+              <li><i class="fas fa-check-circle"></i> سیستم‌های پیشنهاددهنده (Recommendation)</li>
+              <li><i class="fas fa-check-circle"></i> آنالیز داده‌های بزرگ (Big Data)</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary">درخواست مشاوره</a>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="consulting" data-aos="fade-up">
+        <div class="service-detail">
+          <div class="service-image">
+            <img src="assets/services/service-consulting.webp" alt="مشاوره فناوری اطلاعات">
+          </div>
+          <div class="service-info">
+            <h2>مشاوره فناوری اطلاعات</h2>
+            <p>متخصصان ما با سال‌ها تجربه در صنعت فناوری اطلاعات، راهکارهای استراتژیک برای تحول دیجیتال کسب‌وکار شما ارائه می‌دهند.</p>
+            <ul class="service-features">
+              <li><i class="fas fa-check-circle"></i> تدوین استراتژی فناوری اطلاعات</li>
+              <li><i class="fas fa-check-circle"></i> مشاوره تحول دیجیتال</li>
+              <li><i class="fas fa-check-circle"></i> audit امنیتی و ارزیابی ریسک</li>
+              <li><i class="fas fa-check-circle"></i> بهینه‌سازی فرآیندهای IT</li>
+              <li><i class="fas fa-check-circle"></i> برنامه‌ریزی راهبردی فناوری</li>
+              <li><i class="fas fa-check-circle"></i> آموزش و توانمندسازی نیروی انسانی</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary">درخواست مشاوره</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="pricing-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>تعرفه خدمات</h2>
+        <p>پکیج‌های خدمات ما با قیمت‌های شفاف و رقابتی</p>
+      </div>
+      
+      <div class="pricing-grid">
+        <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="price-header">
+            <h3 class="price-title">پایه</h3>
+            <div class="price-amount">۱,۲۰۰,۰۰۰<span>تومان</span></div>
+            <div class="price-period">ماهیانه</div>
+          </div>
+          <ul class="price-features">
+            <li>مشاوره تخصصی</li>
+            <li>پشتیبانی ایمیل</li>
+            <li>بروزرسانی ماهانه</li>
+            <li>آنالیز اولیه</li>
+            <li>گزارش‌دهی پایه</li>
+          </ul>
+          <a href="contact.html" class="btn btn-outline">شروع کنید</a>
+        </div>
+        
+        <div class="pricing-card popular" data-aos="fade-up" data-aos-delay="200">
+          <div class="price-header">
+            <h3 class="price-title">حرفه‌ای</h3>
+            <div class="price-amount">۲,۵۰۰,۰۰۰<span>تومان</span></div>
+            <div class="price-period">ماهیانه</div>
+          </div>
+          <ul class="price-features">
+            <li>همه امکانات پلن پایه</li>
+            <li>پشتیبانی تلفنی ۲۴/۷</li>
+            <li>بروزرسانی هفتگی</li>
+            <li>آنالیز پیشرفته</li>
+            <li>گزارش‌دهی حرفه‌ای</li>
+            <li>برندسازی اختصاصی</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary">شروع کنید</a>
+        </div>
+        
+        <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="price-header">
+            <h3 class="price-title">سازمانی</h3>
+            <div class="price-amount">۴,۸۰۰,۰۰۰<span>تومان</span></div>
+            <div class="price-period">ماهیانه</div>
+          </div>
+          <ul class="price-features">
+            <li>همه امکانات پلن حرفه‌ای</li>
+            <li>تیم اختصاصی پشتیبانی</li>
+            <li>بروزرسانی روزانه</li>
+            <li>آنالیز سفارشی</li>
+            <li>گزارش‌دهی سازمانی</li>
+            <li>پشتیبانی حضوری</li>
+            <li>امنیت پیشرفته</li>
+          </ul>
+          <a href="contact.html" class="btn btn-outline">شروع کنید</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="work-process">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>فرآیند انجام پروژه</h2>
+        <p>ما با یک روش سیستماتیک و منظم، کیفیت و کارایی را تضمین می‌کنیم</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+          <div class="step-number">1</div>
+          <h3>تحلیل نیازها</h3>
+          <p>جمع‌آوری و تحلیل دقیق نیازهای کسب‌وکار شما</p>
+        </div>
+        <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+          <div class="step-number">2</div>
+          <h3>طراحی</h3>
+          <p>طراحی معماری و رابط کاربری بر اساس نیازهای شما</p>
+        </div>
+        <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+          <div class="step-number">3</div>
+          <h3>توسعه</h3>
+          <p>پیاده‌سازی با بهترین روش‌های توسعه نرم‌افزار</p>
+        </div>
+        <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+          <div class="step-number">4</div>
+          <h3>تست و تحویل</h3>
+          <p>تضمین کیفیت و تحویل نهایی پروژه</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>سوالات متداول</h2>
+        <p>پاسخ به پرتکرارترین سوالات شما</p>
+      </div>
+      
+      <div class="faq-container">
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="faq-question">
+            <span>مدت زمان تحویل پروژه چقدر است؟</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>مدت زمان تحویل بستگی به پیچیدگی و اندازه پروژه دارد. پروژه‌های کوچک معمولاً در ۲-۴ هفته و پروژه‌های بزرگ در ۳-۶ ماه تحویل داده می‌شوند. پس از تحلیل نیازها، زمان‌بندی دقیق ارائه می‌شود.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="faq-question">
+            <span>هزینه پروژه چگونه محاسبه می‌شود؟</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>هزینه بر اساس عوامل مختلفی از جمله پیچیدگی پروژه، تکنولوژی‌های مورد استفاده، زمان تحویل و منابع مورد نیاز محاسبه می‌شود. پس از جلسه مشاوره، پیش‌فاکتور دقیق ارائه می‌شود.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="faq-question">
+            <span>آیا پس از تحویل، پشتیبانی ارائه می‌دهید؟</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>بله، تمام پروژه‌ها با گارانتی و پشتیبانی رایگان ۶ ماهه تحویل داده می‌شوند. همچنین پکیج‌های پشتیبانی بلندمدت با قیمت ویژه ارائه می‌شود.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="faq-question">
+            <span>چگونه می‌توانم پیشرفت پروژه را پیگیری کنم؟</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>شما از طریق پنل مشتریان به صورت آنلاین می‌توانید پیشرفت پروژه را مشاهده کنید. همچنین گزارش‌های هفتگی و جلسات منظم برای بررسی وضعیت پروژه برگزار می‌شود.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content" data-aos="fade-up">
+        <h2>آماده شروع همکاری هستید؟</h2>
+        <p>برای دریافت مشاوره رایگان و شروع پروژه خود با ما تماس بگیرید</p>
+        <div class="cta-buttons">
+          <a href="contact.html" class="btn btn-primary">تماس با ما</a>
+          <a href="tel:+98211234567" class="btn btn-outline">۰۲۱-۱۲۳۴۵۶۷</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col about-col">
+          <a href="index.html" class="footer-logo">
+            <img src="assets/logo-white.png" alt="لوگو شما">
+          </a>
+          <p>شرکت شما با بیش از ۱۲ سال تجربه در زمینه ارائه راهکارهای فناوری اطلاعات، آماده خدمت‌رسانی به کسب‌وکارهای کوچک و بزرگ است.</p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col links-col">
+          <h3>لینک‌های سریع</h3>
+          <ul>
+            <li><a href="index.html">خانه</a></li>
+            <li><a href="about.html">درباره ما</a></li>
+            <li><a href="services.html">خدمات</a></li>
+            <li><a href="projects.html">پروژه‌ها</a></li>
+            <li><a href="team.html">تیم ما</a></li>
+            <li><a href="blog.html">وبلاگ</a></li>
+            <li><a href="contact.html">تماس با ما</a></li>
+          </ul>
+        </div>
+        <div class="footer-col services-col">
+          <h3>خدمات ما</h3>
+          <ul>
+            <li><a href="services.html">توسعه نرم‌افزار</a></li>
+            <li><a href="services.html">توسعه اپلیکیشن موبایل</a></li>
+            <li><a href="services.html">طراحی وبسایت</a></li>
+            <li><a href="services.html">تحلیل داده</a></li>
+            <li><a href="services.html">راهکارهای ابری</a></li>
+            <li><a href="services.html">امنیت سایبری</a></li>
+            <li><a href="services.html">مشاوره فناوری اطلاعات</a></li>
+          </ul>
+        </div>
+        <div class="footer-col contact-col">
+          <h3>اطلاعات تماس</h3>
+          <ul>
+            <li><i class="fas fa-map-marker-alt"></i> تهران، خیابان فناوری، پلاک ۱۲۳</li>
+            <li><i class="fas fa-phone"></i> ۰۲۱-۱۲۳۴۵۶۷</li>
+            <li><i class="fas fa-envelope"></i> info@yourmail.com</li>
+            <li><i class="fas fa-clock"></i> شنبه تا چهارشنبه: ۸ صبح تا ۵ عصر</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="copyright">
+          &copy; طراحی شده توسط آروین نفری
+        </div>
+        <div class="footer-links">
+          <a href="#">حریم خصوصی</a>
+          <a href="#">قوانین و مقررات</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+    const tabButtons = document.querySelectorAll(".tab-btn");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        tabButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const target = btn.dataset.tab;
+        tabContents.forEach(tab => {
+          tab.classList.remove("active");
+          if (tab.id === target) {
+            tab.classList.add("active");
+          }
+        });
+      });
+    });
+    const faqItems = document.querySelectorAll(".faq-item");
+    faqItems.forEach(item => {
+      item.querySelector(".faq-question").addEventListener("click", () => {
+        item.classList.toggle("active");
+      });
+    });
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+    });
+    const backToTop = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add("show");
+      } else {
+        backToTop.classList.remove("show");
+      }
+    });
+
+    backToTop.addEventListener("click", e => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>

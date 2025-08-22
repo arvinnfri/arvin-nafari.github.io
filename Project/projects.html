@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پروژه‌ها - شرکت شما</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .projects-page {
+      padding: 80px 0;
+    }
+    
+    .projects-filter {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 50px;
+    }
+    
+    .filter-btn {
+      padding: 12px 25px;
+      border: 2px solid var(--primary-color);
+      background: transparent;
+      color: var(--primary-color);
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .project-item {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--box-shadow-card);
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .project-item:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--box-shadow-hover);
+    }
+    
+    .project-img {
+      position: relative;
+      height: 250px;
+      overflow: hidden;
+    }
+    
+    .project-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-slow);
+    }
+    
+    .project-item:hover .project-img img {
+      transform: scale(1.1);
+    }
+    
+    .project-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    
+    .project-item:hover .project-overlay {
+      opacity: 1;
+    }
+    
+    .view-btn {
+      color: var(--white);
+      background: var(--gradient-primary);
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transform: translateY(20px);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .view-btn i {
+      margin-right: 8px;
+    }
+    
+    .project-item:hover .view-btn {
+      transform: translateY(0);
+    }
+    
+    .project-info {
+      padding: 20px;
+      background-color: var(--white);
+    }
+    
+    .project-info h3 {
+      margin-bottom: 8px;
+      color: var(--secondary-color);
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+    
+    .project-category {
+      color: var(--primary-color);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    
+    .clients-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    }
+    
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 40px;
+      align-items: center;
+      margin-top: 50px;
+    }
+    
+    .client-logo {
+      text-align: center;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: var(--box-shadow-card);
+      transition: var(--transition);
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .client-logo:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--box-shadow-hover);
+    }
+    
+    .client-logo img {
+      max-width: 100%;
+      max-height: 60px;
+      filter: grayscale(100%);
+      opacity: 0.7;
+      transition: var(--transition);
+    }
+    
+    .client-logo:hover img {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+    
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .clients-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-content">
+        <div class="contact-info">
+          <span><i class="fas fa-phone"></i> ۰۲۱-۱۲۳۴۵۶۷</span>
+          <span><i class="fas fa-envelope"></i> info@yourmail.com</span>
+          <span><i class="fas fa-map-marker-alt"></i> تهران، خیابان فناوری</span>
+        </div>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-telegram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <header class="main-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="logo">
+          <img src="assets/logo.png" alt="لوگو شما">
+        </a>
+        
+        <ul class="nav-menu">
+          <li><a href="index.html">خانه</a></li>
+          <li><a href="about.html">درباره ما</a></li>
+          <li><a href="services.html">خدمات</a></li>
+          <li><a href="projects.html" class="active">پروژه‌ها</a></li>
+          <li><a href="team.html">تیم ما</a></li>
+          <li><a href="blog.html">وبلاگ</a></li>
+          <li><a href="contact.html">تماس با ما</a></li>
+        </ul>
+
+        <div class="auth-buttons">
+          <a href="login.html" class="btn btn-outline">ورود</a>
+          <a href="register.html" class="btn btn-primary">ثبت نام</a>
+        </div>
+
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <h1 data-aos="fade-up">پروژه‌های ما</h1>
+        <p data-aos="fade-up" data-aos-delay="200">نمونه‌هایی از کارهای انجام شده توسط تیم متخصص ما</p>
+      </div>
+    </div>
+  </section>
+  <section class="projects-page">
+    <div class="container">
+      <div class="projects-filter" data-aos="fade-up">
+        <button class="filter-btn active" data-filter="all">همه</button>
+        <button class="filter-btn" data-filter="web">وبسایت</button>
+        <button class="filter-btn" data-filter="mobile">موبایل</button>
+        <button class="filter-btn" data-filter="software">نرم‌افزار</button>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-item" data-category="web" data-aos="fade-up">
+          <div class="project-img">
+            <img src="assets/projects/project1.webp" alt="پروژه وبسایت">
+            <div class="project-overlay">
+              <a href="project-single.html" class="view-btn">مشاهده جزئیات <i class="fas fa-arrow-left"></i></a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>وبسایت شرکتی</h3>
+            <span class="project-category">طراحی وب</span>
+          </div>
+        </div>
+
+        <div class="project-item" data-category="mobile" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-img">
+            <img src="assets/projects/project2.webp" alt="پروژه موبایل">
+            <div class="project-overlay">
+              <a href="project-single.html" class="view-btn">مشاهده جزئیات <i class="fas fa-arrow-left"></i></a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>اپلیکیشن فروشگاهی</h3>
+            <span class="project-category">موبایل</span>
+          </div>
+        </div>
+
+        <div class="project-item" data-category="software" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-img">
+            <img src="assets/projects/project3.webp" alt="پروژه نرم‌افزار">
+            <div class="project-overlay">
+              <a href="project-single.html" class="view-btn">مشاهده جزئیات <i class="fas fa-arrow-left"></i></a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>سیستم مدیریت منابع</h3>
+            <span class="project-category">نرم‌افزار</span>
+          </div>
+        </div>
+
+        <div class="project-item" data-category="web" data-aos="fade-up" data-aos-delay="300">
+          <div class="project-img">
+            <img src="assets/projects/project4.webp" alt="پروژه وبسایت">
+            <div class="project-overlay">
+              <a href="project-single.html" class="view-btn">مشاهده جزئیات <i class="fas fa-arrow-left"></i></a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>پورتال سازمانی</h3>
+            <span class="project-category">طراحی وب</span>
+          </div>
+        </div>
+
+        <div class="project-item" data-category="mobile" data-aos="fade-up" data-aos-delay="400">
+          <div class="project-img">
+            <img src="assets/projects/project5.webp" alt="پروژه موبایل">
+            <div class="project-overlay">
+              <a href="project-single.html" class="view-btn">مشاهده جزئیات <i class="fas fa-arrow-left"></i></a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>اپلیکیشن آموزشی</h3>
+            <span class="project-category">موبایل</span>
+          </div>
+        </div>
+
+        <div class="project-item" data-category="software" data-aos="fade-up" data-aos-delay="500">
+          <div class="project-img">
+            <img src="assets/projects/project6.webp" alt="پروژه نرم‌افزار">
+            <div class="project-overlay">
+              <a href="project-single.html" class="view-btn">مشاهده جزئیات <i class="fas fa-arrow-left"></i></a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>نرم‌افزار حسابداری</h3>
+            <span class="project-category">نرم‌افزار</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="clients-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>مشتریان ما</h2>
+        <p>شرکت‌هایی که به ما اعتماد کرده‌اند</p>
+      </div>
+      <div class="clients-grid">
+        <div class="client-logo" data-aos="fade-up" data-aos-delay="100">
+          <img src="assets/projects/client1.webp" alt="مشتری ۱">
+        </div>
+        <div class="client-logo" data-aos="fade-up" data-aos-delay="200">
+          <img src="assets/projects/client1.webp" alt="مشتری ۲">
+        </div>
+        <div class="client-logo" data-aos="fade-up" data-aos-delay="300">
+          <img src="assets/projects/client1.webp" alt="مشتری ۳">
+        </div>
+        <div class="client-logo" data-aos="fade-up" data-aos-delay="400">
+          <img src="assets/projects/client1.webp" alt="مشتری ۴">
+        </div>
+        <div class="client-logo" data-aos="fade-up" data-aos-delay="500">
+          <img src="assets/projects/client1.webp" alt="مشتری ۵">
+        </div>
+        <div class="client-logo" data-aos="fade-up" data-aos-delay="600">
+          <img src="assets/projects/client1.webp" alt="مشتری ۶">
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content" data-aos="fade-up">
+        <h2>آماده شروع همکاری هستید؟</h2>
+        <p>برای دریافت مشاوره رایگان و شروع پروژه خود با ما تماس بگیرید</p>
+        <div class="cta-buttons">
+          <a href="contact.html" class="btn btn-primary">تماس با ما</a>
+          <a href="tel:+98211234567" class="btn btn-outline">۰۲۱-۱۲۳۴۵۶۷</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col about-col">
+          <a href="index.html" class="footer-logo">
+            <img src="assets/logo-white.png" alt="لوگو شما">
+          </a>
+          <p>شرکت شما با بیش از ۱۲ سال تجربه در زمینه ارائه راهکارهای فناوری اطلاعات، آماده خدمت‌رسانی به کسب‌وکارهای کوچک و بزرگ است.</p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col links-col">
+          <h3>لینک‌های سریع</h3>
+          <ul>
+            <li><a href="index.html">خانه</a></li>
+            <li><a href="about.html">درباره ما</a></li>
+            <li><a href="services.html">خدمات</a></li>
+            <li><a href="projects.html">پروژه‌ها</a></li>
+            <li><a href="team.html">تیم ما</a></li>
+            <li><a href="blog.html">وبلاگ</a></li>
+            <li><a href="contact.html">تماس با ما</a></li>
+          </ul>
+        </div>
+        <div class="footer-col services-col">
+          <h3>خدمات ما</h3>
+          <ul>
+            <li><a href="services.html">توسعه نرم‌افزار</a></li>
+            <li><a href="services.html">توسعه اپلیکیشن موبایل</a></li>
+            <li><a href="services.html">طراحی وبسایت</a></li>
+            <li><a href="services.html">تحلیل داده</a></li>
+            <li><a href="services.html">راهکارهای ابری</a></li>
+            <li><a href="services.html">امنیت سایبری</a></li>
+            <li><a href="services.html">مشاوره فناوری اطلاعات</a></li>
+          </ul>
+        </div>
+        <div class="footer-col contact-col">
+          <h3>اطلاعات تماس</h3>
+          <ul>
+            <li><i class="fas fa-map-marker-alt"></i> تهران، خیابان فناوری، پلاک ۱۲۳</li>
+            <li><i class="fas fa-phone"></i> ۰۲۱-۱۲۳۴۵۶۷</li>
+            <li><i class="fas fa-envelope"></i> info@yourmail.com</li>
+            <li><i class="fas fa-clock"></i> شنبه تا چهارشنبه: ۸ صبح تا ۵ عصر</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="copyright">
+          &copy; طراحی شده توسط آروین نفری
+        </div>
+        <div class="footer-links">
+          <a href="#">حریم خصوصی</a>
+          <a href="#">قوانین و مقررات</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectItems = document.querySelectorAll('.project-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        projectItems.forEach(item => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (hamburger && navMenu) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+      });
+    }
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('active');
+      } else {
+        backToTop.classList.remove('active');
+      }
+    });
+
+    backToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>
