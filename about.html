@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>درباره ما - شرکت شما</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    .about-page {
+      padding: 80px 0;
+    }
+    
+    .history-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+    
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background: var(--primary-color);
+      top: 0;
+      bottom: 0;
+      left: 0%;
+      margin-left: -3px;
+      border-radius: 10px;
+    }
+    
+    .timeline-item {
+      position: relative;
+      width: 50%;
+      margin-bottom: 60px;
+    }
+    
+    .timeline-item:nth-child(odd) {
+      left: -50%;
+      padding-right: 70px;
+    }
+    
+    .timeline-item:nth-child(even) {
+      left: -25%;
+      padding-left: 70px;
+    }
+    
+    .timeline-content {
+      padding: 20px 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: var(--box-shadow);
+      position: relative;
+    }
+    
+    .timeline-content::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      top: 30px;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content::after {
+      right: -50px;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-content::after {
+      left: -50px;
+    }
+    
+    .timeline-year {
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .values-section {
+      padding: 80px 0;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .value-card {
+      text-align: center;
+      padding: 40px 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: var(--box-shadow-card);
+      transition: var(--transition);
+    }
+    
+    .value-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--box-shadow-hover);
+    }
+    
+    .value-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(78, 84, 200, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: var(--primary-color);
+      font-size: 30px;
+    }
+    
+    .team-preview {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    }
+    
+    .team-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .team-preview-card {
+      text-align: center;
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--box-shadow-card);
+      transition: var(--transition);
+    }
+    
+    .team-preview-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--box-shadow-hover);
+    }
+    
+    .team-preview-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    
+    .team-preview-info {
+      padding: 20px;
+    }
+    
+    .team-preview-name {
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: var(--secondary-color);
+    }
+    
+    .team-preview-position {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    
+    @media (max-width: 768px) {
+      .timeline::after {
+        left: 31px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 0;
+      }
+      
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+      
+      .timeline-content::after {
+        left: -50px !important;
+        right: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-content">
+        <div class="contact-info">
+          <span><i class="fas fa-phone"></i> ۰۲۱-۱۲۳۴۵۶۷</span>
+          <span><i class="fas fa-envelope"></i> info@yourmail.com</span>
+          <span><i class="fas fa-map-marker-alt"></i> تهران، خیابان فناوری</span>
+        </div>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-telegram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <header class="main-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="logo">
+          <img src="assets/logo.png" alt="لوگو شما">
+        </a>
+        
+        <ul class="nav-menu">
+          <li><a href="index.html">خانه</a></li>
+          <li><a href="about.html" class="active">درباره ما</a></li>
+          <li><a href="services.html">خدمات</a></li>
+          <li><a href="projects.html">پروژه‌ها</a></li>
+          <li><a href="team.html">تیم ما</a></li>
+          <li><a href="blog.html">وبلاگ</a></li>
+          <li><a href="contact.html">تماس با ما</a></li>
+        </ul>
+
+        <div class="auth-buttons">
+          <a href="login.html" class="btn btn-outline">ورود</a>
+          <a href="register.html" class="btn btn-primary">ثبت نام</a>
+        </div>
+
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <h1 data-aos="fade-up">درباره شرکت شما</h1>
+        <p data-aos="fade-up" data-aos-delay="200">تاریخچه، ماموریت و ارزش‌های ما</p>
+      </div>
+    </div>
+  </section>
+  <section class="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content" data-aos="fade-right">
+          <h2>شرکت شما</h2>
+          <p class="subtitle">پیشرو در ارائه راهکارهای فناوری اطلاعات</p>
+          <p>شرکت شما از سال ۱۳۹۰ با هدف ارائه خدمات تخصصی در حوزه فناوری اطلاعات تأسیس شده است. ما با تکیه بر دانش فنی و تجربه تیم متخصص خود، توانسته‌ایم به یکی از شرکت‌های پیشرو در این حوزه تبدیل شویم.</p>
+          <p>ماموریت ما ارائه راهکارهای هوشمند و کارآمد برای تحول دیجیتال کسب‌وکارهاست. ما به مشتریان خود کمک می‌کنیم تا با استفاده از فناوری‌های روز، به اهداف تجاری خود دست یابند.</p>
+          <div class="stats">
+            <div class="stat-item">
+              <span class="count" data-count="150">0</span>+
+              <span class="stat-label">پروژه موفق</span>
+            </div>
+            <div class="stat-item">
+              <span class="count" data-count="50">0</span>+
+              <span class="stat-label">مشتری دائمی</span>
+            </div>
+            <div class="stat-item">
+              <span class="count" data-count="12">0</span>+
+              <span class="stat-label">سال تجربه</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="history-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>تاریخچه شرکت</h2>
+        <p>مسیر رشد و توسعه شرکت شما از ابتدا تاکنون</p>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-item" data-aos="fade-up">
+          <div class="timeline-content">
+            <div class="timeline-year">۱۳۹۰</div>
+            <h3>تأسیس شرکت</h3>
+            <p>شرکت شما با هدف ارائه خدمات نوآورانه در حوزه فناوری اطلاعات تأسیس شد.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="timeline-content">
+            <div class="timeline-year">۱۳۹۲</div>
+            <h3>اولین پروژه بزرگ</h3>
+            <p>انجام اولین پروژه بزرگ برای یک شرکت بین‌المللی و کسب اعتبار در بازار.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="timeline-content">
+            <div class="timeline-year">۱۳۹۵</div>
+            <h3>توسعه بین‌المللی</h3>
+            <p>شروع همکاری با شرکت‌های بین‌المللی و گسترش فعالیت‌ها به بازارهای جهانی.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="timeline-content">
+            <div class="timeline-year">۱۴۰۰</div>
+            <h3>تحول دیجیتال</h3>
+            <p>تمرکز بر ارائه راهکارهای تحول دیجیتال و هوش مصنوعی برای کسب‌وکارها.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="timeline-content">
+            <div class="timeline-year">۱۴۰۲</div>
+            <h3>دستاوردهای جدید</h3>
+            <p>کسب جایزه بهترین شرکت فناوری اطلاعات و توسعه پلتفرم‌های نوآورانه.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="values-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>ارزش‌های ما</h2>
+        <p>اصولی که بر اساس آن فعالیت می‌کنیم</p>
+      </div>
+      
+      <div class="values-grid">
+        <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="value-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3>نوآوری</h3>
+          <p>همیشه به دنبال راهکارهای خلاقانه و نوآورانه برای حل چالش‌های پیچیده هستیم.</p>
+        </div>
+        
+        <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="value-icon">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <h3>اعتماد</h3>
+          <p>اعتماد مشتریان بزرگترین سرمایه ماست و برای حفظ آن تمام تلاش خود را می‌کنیم.</p>
+        </div>
+        
+        <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="value-icon">
+            <i class="fas fa-medal"></i>
+          </div>
+          <h3>کیفیت</h3>
+          <p>کیفیت برتر در تمامی محصولات و خدمات، اولویت اصلی ما در تمامی پروژه‌هاست.</p>
+        </div>
+        
+        <div class="value-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="value-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>همکاری</h3>
+          <p>باور داریم که بهترین نتایج از طریق همکاری و مشارکت حاصل می‌شوند.</p>
+        </div>
+        
+        <div class="value-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="value-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>توسعه مستمر</h3>
+          <p>همواره در حال یادگیری و بهبود خود و خدماتمان هستیم.</p>
+        </div>
+        
+        <div class="value-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="value-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>مسئولیت‌پذیری</h3>
+          <p>در قبال کارها و تصمیمات خود مسئولیت کامل می‌پذیریم.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="team-preview">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>تیم مدیریت</h2>
+        <p>متخصصان باتجربه که شرکت شما را رهبری می‌کنند</p>
+      </div>
+      
+      <div class="team-preview-grid">
+        <div class="team-preview-card" data-aos="fade-up" data-aos-delay="100">
+          <img src="assets/about/team-ceo.png" alt="مدیر عامل" class="team-preview-img">
+          <div class="team-preview-info">
+            <h3 class="team-preview-name">دکتر علی رضایی</h3>
+            <p class="team-preview-position">مدیر عامل</p>
+          </div>
+        </div>
+        
+        <div class="team-preview-card" data-aos="fade-up" data-aos-delay="200">
+          <img src="assets/about/team-cto.png" alt="مدیر فناوری" class="team-preview-img">
+          <div class="team-preview-info">
+            <h3 class="team-preview-name">مهندس سارا کریمی</h3>
+            <p class="team-preview-position">مدیر فناوری</p>
+          </div>
+        </div>
+        
+        <div class="team-preview-card" data-aos="fade-up" data-aos-delay="300">
+          <img src="assets/about/team-cfo.png" alt="مدیر مالی" class="team-preview-img">
+          <div class="team-preview-info">
+            <h3 class="team-preview-name">محمد حسینی</h3>
+            <p class="team-preview-position">مدیر مالی</p>
+          </div>
+        </div>
+        
+        <div class="team-preview-card" data-aos="fade-up" data-aos-delay="400">
+          <img src="assets/about/team-pm.png" alt="مدیر پروژه" class="team-preview-img">
+          <div class="team-preview-info">
+            <h3 class="team-preview-name">فاطمه محمدی</h3>
+            <p class="team-preview-position">مدیر پروژه</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center" data-aos="fade-up">
+        <a href="team.html" class="btn btn-primary">مشاهده کامل تیم</a>
+      </div>
+    </div>
+  </section>
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content" data-aos="fade-up">
+        <h2>آماده شروع همکاری هستید؟</h2>
+        <p>برای دریافت مشاوره رایگان و شروع پروژه خود با ما تماس بگیرید</p>
+        <div class="cta-buttons">
+          <a href="contact.html" class="btn btn-primary">تماس با ما</a>
+          <a href="tel:+98211234567" class="btn btn-outline">۰۲۱-۱۲۳۴۵۶۷</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col about-col">
+          <a href="index.html" class="footer-logo">
+            <img src="assets/logo-white.png" alt="لوگو شما">
+          </a>
+          <p>شرکت شما با بیش از ۱۲ سال تجربه در زمینه ارائه راهکارهای فناوری اطلاعات، آماده خدمت‌رسانی به کسب‌وکارهای کوچک و بزرگ است.</p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col links-col">
+          <h3>لینک‌های سریع</h3>
+          <ul>
+            <li><a href="index.html">خانه</a></li>
+            <li><a href="about.html">درباره ما</a></li>
+            <li><a href="services.html">خدمات</a></li>
+            <li><a href="projects.html">پروژه‌ها</a></li>
+            <li><a href="team.html">تیم ما</a></li>
+            <li><a href="blog.html">وبلاگ</a></li>
+            <li><a href="contact.html">تماس با ما</a></li>
+          </ul>
+        </div>
+        <div class="footer-col services-col">
+          <h3>خدمات ما</h3>
+          <ul>
+            <li><a href="services.html">توسعه نرم‌افزار</a></li>
+            <li><a href="services.html">توسعه اپلیکیشن موبایل</a></li>
+            <li><a href="services.html">طراحی وبسایت</a></li>
+            <li><a href="services.html">تحلیل داده</a></li>
+            <li><a href="services.html">راهکارهای ابری</a></li>
+            <li><a href="services.html">امنیت سایبری</a></li>
+            <li><a href="services.html">مشاوره فناوری اطلاعات</a></li>
+          </ul>
+        </div>
+        <div class="footer-col contact-col">
+          <h3>اطلاعات تماس</h3>
+          <ul>
+            <li><i class="fas fa-map-marker-alt"></i> تهران، خیابان فناوری، پلاک ۱۲۳</li>
+            <li><i class="fas fa-phone"></i> ۰۲۱-۱۲۳۴۵۶۷</li>
+            <li><i class="fas fa-envelope"></i> info@yourmail.com</li>
+            <li><i class="fas fa-clock"></i> شنبه تا چهارشنبه: ۸ صبح تا ۵ عصر</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="copyright">
+          &copy; طراحی شده توسط آروین نفری
+        </div>
+        <div class="footer-links">
+          <a href="#">حریم خصوصی</a>
+          <a href="#">قوانین و مقررات</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="script.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      offset: 100
+    });
+  </script>
+</body>
+</html>

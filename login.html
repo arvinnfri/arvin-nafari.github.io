@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ورود - شرکت شما</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 0;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    
+    .auth-container {
+      max-width: 500px;
+      width: 100%;
+      margin: 0 auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: var(--box-shadow-hover);
+    }
+    
+    .auth-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .auth-header h2 {
+      color: var(--secondary-color);
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+    
+    .auth-header p {
+      color: var(--gray-color);
+    }
+    
+    .auth-form .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .auth-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--secondary-color);
+    }
+    
+    .auth-form input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+    
+    .auth-form input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.2);
+      outline: none;
+    }
+    
+    .auth-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 25px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .remember-me {
+      display: flex;
+      align-items: center;
+    }
+    
+    .remember-me input {
+      width: auto;
+      margin-left: 8px;
+    }
+    
+    .forgot-password {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .forgot-password:hover {
+      color: var(--primary-dark);
+    }
+    
+    .auth-footer {
+      text-align: center;
+      margin-top: 25px;
+      color: var(--gray-color);
+    }
+    
+    .auth-footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .auth-footer a:hover {
+      color: var(--primary-dark);
+    }
+    
+    .social-login {
+      margin-top: 30px;
+      text-align: center;
+    }
+    
+    .social-login p {
+      position: relative;
+      margin-bottom: 20px;
+      color: var(--gray-color);
+    }
+    
+    .social-login p::before,
+    .social-login p::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 30%;
+      height: 1px;
+      background: var(--light-gray);
+    }
+    
+    .social-login p::before {
+      right: 0;
+    }
+    
+    .social-login p::after {
+      left: 0;
+    }
+    
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .social-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      transition: var(--transition);
+      box-shadow: var(--box-shadow-card);
+    }
+    
+    .social-btn.google {
+      background: #DB4437;
+    }
+    
+    .social-btn.facebook {
+      background: #4267B2;
+    }
+    
+    .social-btn.twitter {
+      background: #1DA1F2;
+    }
+    
+    .social-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--box-shadow-hover);
+    }
+    
+    .notification-box {
+      background: #fff8e1;
+      border: 1px solid #ffd54f;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 25px;
+      text-align: center;
+      color: #856404;
+      font-weight: 600;
+    }
+    
+    .notification-box i {
+      margin-left: 8px;
+      color: #ffc107;
+    }
+    
+    @media (max-width: 576px) {
+      .auth-container {
+        padding: 30px 20px;
+      }
+      
+      .auth-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-content">
+        <div class="contact-info">
+          <span><i class="fas fa-phone"></i> ۰۲۱-۱۲۳۴۵۶۷</span>
+          <span><i class="fas fa-envelope"></i> info@yourmail.com</span>
+          <span><i class="fas fa-map-marker-alt"></i> تهران، خیابان فناوری</span>
+        </div>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-telegram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <header class="main-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="logo">
+          <img src="assets/logo.png" alt="لوگو شما">
+        </a>
+        
+        <ul class="nav-menu">
+          <li><a href="index.html">خانه</a></li>
+          <li><a href="about.html">درباره ما</a></li>
+          <li><a href="services.html">خدمات</a></li>
+          <li><a href="projects.html">پروژه‌ها</a></li>
+          <li><a href="team.html">تیم ما</a></li>
+          <li><a href="blog.html">وبلاگ</a></li>
+          <li><a href="contact.html">تماس با ما</a></li>
+        </ul>
+
+        <div class="auth-buttons">
+          <a href="login.html" class="btn btn-primary">ورود</a>
+          <a href="register.html" class="btn btn-outline">ثبت نام</a>
+        </div>
+
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <div class="container">
+      <div class="auth-container" data-aos="fade-up">
+        <div class="notification-box">
+          <i class="fas fa-info-circle"></i>
+          این بخش به زودی راه‌اندازی خواهد شد
+        </div>
+        
+        <div class="auth-header">
+          <h2>ورود به حساب کاربری</h2>
+          <p>برای دسترسی به امکانات بیشتر وارد شوید</p>
+        </div>
+        
+        <form class="auth-form">
+          <div class="form-group">
+            <label for="username">نام کاربری یا ایمیل</label>
+            <input type="text" id="username" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="password">رمز عبور</label>
+            <input type="password" id="password" required>
+          </div>
+          
+          <div class="auth-actions">
+            <div class="remember-me">
+              <input type="checkbox" id="remember">
+              <label for="remember">مرا به خاطر بسپار</label>
+            </div>
+            <a href="forgot-password.html" class="forgot-password">رمز عبور را فراموش کرده‌اید؟</a>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 16px;">ورود</button>
+        </form>
+        
+        <div class="social-login">
+          <p>یا با استفاده از</p>
+          <div class="social-buttons">
+            <a href="#" class="social-btn google"><i class="fab fa-google"></i></a>
+            <a href="#" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        
+        <div class="auth-footer">
+          حساب کاربری ندارید؟ <a href="register.html">ثبت نام کنید</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col about-col">
+          <a href="index.html" class="footer-logo">
+            <img src="assets/logo-white.png" alt="لوگو شما">
+          </a>
+          <p>شرکت شما با بیش از ۱۲ سال تجربه در زمینه ارائه راهکارهای فناوری اطلاعات، آماده خدمت‌رسانی به کسب‌وکارهای کوچک و بزرگ است.</p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col links-col">
+          <h3>لینک‌های سریع</h3>
+          <ul>
+            <li><a href="index.html">خانه</a></li>
+            <li><a href="about.html">درباره ما</a></li>
+            <li><a href="services.html">خدمات</a></li>
+            <li><a href="projects.html">پروژه‌ها</a></li>
+            <li><a href="team.html">تیم ما</a></li>
+            <li><a href="blog.html">وبلاگ</a></li>
+            <li><a href="contact.html">تماس با ما</a></li>
+          </ul>
+        </div>
+        <div class="footer-col services-col">
+          <h3>خدمات ما</h3>
+          <ul>
+            <li><a href="services.html">توسعه نرم‌افزار</a></li>
+            <li><a href="services.html">توسعه اپلیکیشن موبایل</a></li>
+            <li><a href="services.html">طراحی وبسایت</a></li>
+            <li><a href="services.html">تحلیل داده</a></li>
+            <li><a href="services.html">راهکارهای ابری</a></li>
+            <li><a href="services.html">امنیت سایبری</a></li>
+            <li><a href="services.html">مشاوره فناوری اطلاعات</a></li>
+          </ul>
+        </div>
+        <div class="footer-col contact-col">
+          <h3>اطلاعات تماس</h3>
+          <ul>
+            <li><i class="fas fa-map-marker-alt"></i> تهران، خیابان فناوری، پلاک ۱۲۳</li>
+            <li><i class="fas fa-phone"></i> ۰۲۱-۱۲۳۴۵۶۷</li>
+            <li><i class="fas fa-envelope"></i> info@yourmail.com</li>
+            <li><i class="fas fa-clock"></i> شنبه تا چهارشنبه: ۸ صبح تا ۵ عصر</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="copyright">
+          &copy; طراحی شده توسط آروین نفری
+        </div>
+        <div class="footer-links">
+          <a href="#">حریم خصوصی</a>
+          <a href="#">قوانین و مقررات</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (hamburger && navMenu) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+      });
+    }
+
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('active');
+      } else {
+        backToTop.classList.remove('active');
+      }
+    });
+
+    backToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>

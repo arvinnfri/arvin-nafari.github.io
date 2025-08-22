@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تیم ما - شرکت شما</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .team-page {
+      padding: 80px 0;
+    }
+    
+    .team-section {
+      padding: 80px 0;
+    }
+    
+    .team-section.bg-light {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .team-member {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--box-shadow-card);
+      transition: var(--transition);
+      text-align: center;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--box-shadow-hover);
+    }
+    
+    .member-img {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+    }
+    
+    .member-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-slow);
+    }
+    
+    .team-member:hover .member-img img {
+      transform: scale(1.1);
+    }
+    
+    .social-links {
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.7);
+      transition: var(--transition);
+    }
+    
+    .team-member:hover .social-links {
+      bottom: 0;
+    }
+    
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: var(--gradient-primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      transform: translateY(-5px);
+      background: var(--primary-dark);
+    }
+    
+    .member-info {
+      padding: 25px;
+    }
+    
+    .member-info h3 {
+      margin-bottom: 8px;
+      color: var(--secondary-color);
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+    
+    .position {
+      color: var(--primary-color);
+      font-weight: 600;
+      margin-bottom: 15px;
+      display: block;
+    }
+    
+    .bio {
+      color: var(--gray-color);
+      line-height: 1.7;
+    }
+    
+    .join-team {
+      padding: 100px 0;
+      background: var(--gradient-primary);
+      color: var(--white);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .join-team::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      animation: pulse 15s infinite linear;
+    }
+    
+    .join-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .join-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+    
+    .join-content p {
+      margin-bottom: 40px;
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+    
+    @media (max-width: 768px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .join-content h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="logo">
+          <img src="assets/logo.png" alt="لوگو شما">
+        </a>
+        
+        <ul class="nav-menu">
+          <li><a href="index.html">خانه</a></li>
+          <li><a href="about.html">درباره ما</a></li>
+          <li><a href="services.html">خدمات</a></li>
+          <li><a href="projects.html">پروژه‌ها</a></li>
+          <li><a href="team.html" class="active">تیم ما</a></li>
+          <li><a href="blog.html">وبلاگ</a></li>
+          <li><a href="contact.html">تماس با ما</a></li>
+        </ul>
+
+        <div class="auth-buttons">
+          <a href="login.html" class="btn btn-outline">ورود</a>
+          <a href="register.html" class="btn btn-primary">ثبت نام</a>
+        </div>
+
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <h1 data-aos="fade-up">تیم ما</h1>
+        <p data-aos="fade-up" data-aos-delay="200">متخصصان با تجربه و متعهد شرکت شما</p>
+      </div>
+    </div>
+  </section>
+  <section class="team-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>تیم مدیریت</h2>
+        <p>مدیران ارشد و تصمیم‌گیران شرکت</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+          <div class="member-img">
+            <img src="assets/team/team1.png" alt="مدیر عامل">
+            <div class="social-links">
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="member-info">
+            <h3>دکتر علی رضایی</h3>
+            <span class="position">مدیر عامل</span>
+            <p class="bio">کارآفرین و محقق با سابقه در زمینه هوش مصنوعی و مدیریت محصول. دکتر رضایی با بیش از ۱۵ سال تجربه در صنعت فناوری اطلاعات، هدایت شرکت شما را بر عهده دارد.</p>
+          </div>
+        </div>
+
+        <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+          <div class="member-img">
+            <img src="assets/team/team2.png" alt="مدیر مالی">
+            <div class="social-links">
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="member-info">
+            <h3>محمد حسینی</h3>
+            <span class="position">مدیر مالی</span>
+            <p class="bio">متخصص امور مالی با مدرک MBA از دانشگاه تهران. وی با بیش از ۱۲ سال تجربه در مدیریت مالی شرکت‌های فناوری، مسئولیت امور مالی شرکت را بر عهده دارد.</p>
+          </div>
+        </div>
+
+        <div class="team-member" data-aos="fade-up" data-aos-delay="300">
+          <div class="member-img">
+            <img src="assets/team/team-pm.png" alt="مدیر پروژه">
+            <div class="social-links">
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="member-info">
+            <h3>فاطمه محمدی</h3>
+            <span class="position">مدیر پروژه</span>
+            <p class="bio">مدیر پروژه‌های نرم‌افزاری با گواهینامه PMP و بیش از ۱۰ سال تجربه در مدیریت پروژه‌های بزرگ مقیاس در حوزه فناوری اطلاعات.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="team-section bg-light">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>تیم توسعه</h2>
+        <p>متخصصان فنی و توسعه‌دهندگان ما</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+          <div class="member-img">
+            <img src="assets/team/team3.png" alt="توسعه‌دهنده">
+            <div class="social-links">
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="member-info">
+            <h3>مهندس سارا کریمی</h3>
+            <span class="position">مدیر فناوری</span>
+            <p class="bio">هدایت تیم توسعه و معماری فنی محصولات. متخصص در زمینه‌های مختلف برنامه‌نویسی و طراحی سیستم‌های پیچیده نرم‌افزاری.</p>
+          </div>
+        </div>
+
+        <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+          <div class="member-img">
+            <img src="assets/team/team4.png" alt="توسعه‌دهنده">
+            <div class="social-links">
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="member-info">
+            <h3>رضا احمدی</h3>
+            <span class="position">توسعه‌دهنده ارشد</span>
+            <p class="bio">متخصص در توسعه اپلیکیشن‌های موبایل و وب. دارای بیش از ۸ سال تجربه در توسعه نرم‌افزار با تکنولوژی‌های روز.</p>
+          </div>
+        </div>
+
+        <div class="team-member" data-aos="fade-up" data-aos-delay="300">
+          <div class="member-img">
+            <img src="assets/team/team5.png" alt="توسعه‌دهنده">
+            <div class="social-links">
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="member-info">
+            <h3>نازنین جعفری</h3>
+            <span class="position">متخصص UX/UI</span>
+            <p class="bio">طراح تجربه کاربری و رابط کاربری با ذوق هنری بالا. تخصص اصلی او در طراحی رابط‌های کاربری زیبا و کاربرپسند برای محصولات دیجیتال است.</p>
+          </div>
+        </div>
+    </div>
+  </section>
+  <section class="join-team">
+    <div class="container">
+      <div class="join-content" data-aos="fade-up">
+        <h2>به تیم ما بپیوندید</h2>
+        <p>اگر علاقه‌مند به همکاری با ما هستید، رزومه خود را برای ما ارسال کنید</p>
+        <a href="contact.html" class="btn btn-primary">ارسال رزومه</a>
+      </div>
+    </div>
+  </section>
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col about-col">
+          <a href="index.html" class="footer-logo">
+            <img src="assets/logo-white.png" alt="لوگو شما">
+          </a>
+          <p>شرکت شما با بیش از ۱۲ سال تجربه در زمینه ارائه راهکارهای فناوری اطلاعات، آماده خدمت‌رسانی به کسب‌وکارهای کوچک و بزرگ است.</p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col links-col">
+          <h3>لینک‌های سریع</h3>
+          <ul>
+            <li><a href="index.html">خانه</a></li>
+            <li><a href="about.html">درباره ما</a></li>
+            <li><a href="services.html">خدمات</a></li>
+            <li><a href="projects.html">پروژه‌ها</a></li>
+            <li><a href="team.html">تیم ما</a></li>
+            <li><a href="blog.html">وبلاگ</a></li>
+            <li><a href="contact.html">تماس با ما</a></li>
+          </ul>
+        </div>
+        <div class="footer-col services-col">
+          <h3>خدمات ما</h3>
+          <ul>
+            <li><a href="services.html">توسعه نرم‌افزار</a></li>
+            <li><a href="services.html">توسعه اپلیکیشن موبایل</a></li>
+            <li><a href="services.html">طراحی وبسایت</a></li>
+            <li><a href="services.html">تحلیل داده</a></li>
+            <li><a href="services.html">راهکارهای ابری</a></li>
+            <li><a href="services.html">امنیت سایبری</a></li>
+            <li><a href="services.html">مشاوره فناوری اطلاعات</a></li>
+          </ul>
+        </div>
+        <div class="footer-col contact-col">
+          <h3>اطلاعات تماس</h3>
+          <ul>
+            <li><i class="fas fa-map-marker-alt"></i> تهران، خیابان فناوری، پلاک ۱۲۳</li>
+            <li><i class="fas fa-phone"></i> ۰۲۱-۱۲۳۴۵۶۷</li>
+            <li><i class="fas fa-envelope"></i> info@yourmail.com</li>
+            <li><i class="fas fa-clock"></i> شنبه تا چهارشنبه: ۸ صبح تا ۵ عصر</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="copyright">
+          &copy; طراحی شده توسط آروین نفری
+        </div>
+        <div class="footer-links">
+          <a href="#">حریم خصوصی</a>
+          <a href="#">قوانین و مقررات</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (hamburger && navMenu) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+      });
+    }
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('active');
+      } else {
+        backToTop.classList.remove('active');
+      }
+    });
+
+    backToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>
