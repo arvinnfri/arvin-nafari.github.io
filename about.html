@@ -171,26 +171,26 @@
       font-weight: 600;
     }
     
-    @media (max-width: 768px) {
-      .timeline::after {
-        left: 31px;
-      }
-      
-      .timeline-item {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 0;
-      }
-      
-      .timeline-item:nth-child(even) {
-        left: 0;
-      }
-      
-      .timeline-content::after {
-        left: -50px !important;
-        right: auto !important;
-      }
+  @media (max-width: 768px) {
+    .timeline::after {
+      left: 31px;
     }
+    
+    .timeline-item {
+      width: 100%;
+      padding-left: 70px;
+      padding-right: 25px;
+      left: 0 !important;
+    }
+    .timeline-item:nth-child(even) {
+      left: 0;
+    }
+      
+    .timeline-content::after {
+      left: -50px !important;
+      right: auto !important;
+    }
+  }
   </style>
 </head>
 <body>
